@@ -1,6 +1,6 @@
 const User = require('../models/user');
 module.exports.profile = function(req, res){
-    return res.render('user', {
+    return res.render('user_profile', {
         title:'User Profile',
     });
 }
@@ -43,6 +43,6 @@ module.exports.create = async function(req, res){
 
 //Get the SignIn Data
 module.exports.createSession = function(req, res){
-    //TODO Later
+    return res.redirect('/');
 }
 
