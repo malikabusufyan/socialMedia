@@ -10,8 +10,14 @@ router.get('/profile', usersController.profile);
 router.get('/sign-up', usersController.signUp);
 router.get('/sign-in', usersController.signIn);
 
-//Creating the SignUp 
-
+//Creating routes for the SignUp 
 router.post('/create', usersController.create);
+
+//Creating routes for the SignInSession
+router.post('/create-session', usersController.createSession);
+
+// Creating routes for signout
+router.post('/sign-out', usersController.signOut);
+
 
 module.exports = router;
