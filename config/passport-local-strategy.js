@@ -5,6 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 //Importing User From Model
 const User = require('../models/user');
+
 /*
 These are old mongoose version thats why it is not running
 FindOne and FindbyID function doesn't take callback function now
@@ -80,5 +81,25 @@ passport.deserializeUser(function(id, done){
             return done(err);
         });
 });
+
+//Check if the user is authenticated
+passport.checkAuthentication = function(req, res, next){
+    //if the user is signed in passed on the next function request (controller's action)
+    if (req.isAuthenticated()){
+        return next();
+    }
+    //if the user is not signed-in
+    return res.redirect('/users/sign-in')
+}
+
+//Move to the View file once the user got authenticated
+passport.setAuthenticatedUser = function(req, res, next){
+    if (req.isAuthenticated()){
+        //req.user contains the current signed in user session cookie 
+        //and we are just sending to the locals for the views
+        res.locals.user = req.user;
+    }
+    next();
+}
 
 module.exports = passport;
