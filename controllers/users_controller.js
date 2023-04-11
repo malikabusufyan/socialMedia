@@ -49,7 +49,7 @@ module.exports.create = async function(req, res){
 
 //Get the SignIn Data
 module.exports.createSession = function(req, res){
-    return res.redirect('/');
+    return res.redirect('/users/profile');
 }
 
 //Sign_out or Destroying the Session

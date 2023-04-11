@@ -14,7 +14,19 @@ const passportLocal = require('./config/passport-local-strategy');
 
 //Accessing MongoStore from the MongoConnect Library to store session
 const MongoStore = require('connect-mongo');
+/*
+//This is not working for now
+//Accessing SCSS and node-sass-middleware
+const sassMiddleware = require('node-sass-middleware');
 
+app.use(sassMiddleware({
+    src : './assets/scss',
+    dest : './assets/css',
+    debug : true,
+    outputStyle : 'extended',
+    prefix : '/css'
+}));
+*/
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
