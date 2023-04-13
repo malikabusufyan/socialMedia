@@ -1,0 +1,84 @@
+/* Home container takes 100% of the width */
+#home-container {
+  width: 100%;
+}
+
+/* Display should be flex and width of feed-post will be 70% and friends will have 30% */
+#home-container {
+  display: flex;
+}
+
+#feed-posts {
+  width: 70%;
+  margin-left: 30px;
+}
+
+#user-friends {
+  width: 30%;
+  height: 100vh;
+  border-left: 1px solid rgb(85, 82, 82); /* Add left line border to friends side */
+  padding-left: 10px; /* Add padding of 10px */
+}
+
+
+#new-post-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+#new-post-form textarea {
+  width: 60%;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#new-post-form input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#posts-list-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+.post-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.post-content p {
+  margin: 0;
+  font-size: 16px;
+}
+
+#user-friends h4, #feed-posts h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
