@@ -33,15 +33,16 @@ passport.use(new LocalStrategy({
 
 //Authentication Using Passport
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true
     },
-    function(email, password, done){
+    function(req, email, password, done){
         //Find a User and establish the identity
         User.findOne({email: email})
             .then(user => {
                 if (!user || user.password != password){
-                    console.log("Invalid Username/Password");
-                    return done(null, false);
+                    req.flash('error', "Invalid Username/Password");
+                    return req.res.redirect('/users/sign-in');
                 }
                 //Return the User if both the above condition failed
                 return done(null, user);

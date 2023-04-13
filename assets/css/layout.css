@@ -66,6 +66,10 @@ nav {
   color: #000;
 }
 
+#comments-li{
+  list-style: none;
+}
+
 /* Footer */
 footer {
   background-color: #eee;

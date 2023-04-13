@@ -14,7 +14,7 @@ module.exports.create = async function(req, res) {
 
       post.comments.push(comment);
       await post.save();
-
+      req.flash('success', "Comment Made")
       res.redirect('/');
     }
   } catch (err) {
@@ -59,7 +59,7 @@ module.exports.destroy = async function (req, res) {
       { $pull: { comments: req.params.id } },
       { new: true }
     );
-
+    req.flash('success', "Comment Deleted Successfully");
     return res.redirect('back');
   } catch (err) {
     console.error('Error in deleting comment:', err);

@@ -41,7 +41,6 @@ module.exports.signUp = function(req ,res){
 }
 
 //Render Router for SignIn
-
 module.exports.signIn = function(req ,res){
     if (req.isAuthenticated()){
         return res.redirect('/users/profile');
@@ -73,6 +72,7 @@ module.exports.create = async function(req, res){
 
 //Get the SignIn Data
 module.exports.createSession = function(req, res){
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
@@ -87,6 +87,8 @@ module.exports.destroySession = function(req, res){
             console.log('Error in destroying session', err);
             return res.redirect('/');
         }
+        req.flash('success', 'You have been Logged Out');
         return res.redirect('/');
     });
+    
 }

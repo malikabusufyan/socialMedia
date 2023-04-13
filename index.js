@@ -6,12 +6,10 @@ const port=8000;
 const expressLayouts = require('express-ejs-layouts');
 //Accessing Database
 const db = require('./config/mongoose');
-
 //Accessign express Session and setting up 
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-
 //Accessing MongoStore from the MongoConnect Library to store session
 const MongoStore = require('connect-mongo');
 /*
@@ -27,12 +25,15 @@ app.use(sassMiddleware({
     prefix : '/css'
 }));
 */
+//Setting up the flash messages
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //use of static Files
 app.use(express.static('./assets'));
-
 app.use(expressLayouts)
 
 //Extract of CSS links and Scripts Tag and put them at the head and bottom of the file
@@ -66,39 +67,15 @@ app.use(session({
     })
 }));
 
-// app.use(session({
-//     name:'codeial',
-//     //TODO before going for the production
-//     secret:'something',
-//     //SaveUnitialized means the user is not logged in so we dont want to add extra space
-//     saveUninitialized: false,
-//     //resave is if the user is not changing any data we dont need to save it again and again 
-//     //thats why we put resave as false
-//     resave: false,
-//     cookie:{
-//         maxAge: (1000*60*100)
-//     },
-//     //MongoSession is used to store the session in the db
-//     // store: new MongoStore({
-//     //     mongooseConnection: db,
-//     //     autoRemove: 'disabled'
-//     // }, function (err) {
-//     //     console.log(err || 'Connect-Mongodb Setup Ok');
-//     // })
-//     store: MongoStore.create({
-//         client: db.connection.getClient(),
-//         autoRemove: 'disabled'
-//     }, function (err) {
-//     console.log(err || 'Connect-Mongodb Setup Ok');
-//     })
-// }));
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //For the authentication
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 //Use express router
 app.use('/', require('./routes'));

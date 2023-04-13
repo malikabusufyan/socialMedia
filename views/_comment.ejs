@@ -1,8 +1,9 @@
-<li>
+<link rel="stylesheet" href="/css/layout.css">
+<li id="comments-li">
     <p>
         <% if (locals.user && locals.user.id==comment.user.id) { %>
             <small>
-                <a href="/comments/destroy/<%= comment.id %>">X</a>
+                <a href="/comments/destroy/<%= comment.id %>"><i class="bi bi-x-square-fill"></i></a>
             </small>
 
             <%} %>
