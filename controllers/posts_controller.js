@@ -7,11 +7,14 @@ module.exports.create = async function (req, res){
             content: req.body.content,
             user: req.user._id
         });
-      
+        const postData = await Post.findById(post._id).populate({
+          path: "user",
+          select: 'name'
+        })
         if (req.xhr){
           return res.status(200).json({
             data: {
-              post: post
+              post: postData
             },
             message: "Post Created!!"
           });
@@ -51,10 +54,20 @@ module.exports.destroy = async function(req, res) {
     if (post.user != req.user.id) {
       return res.redirect('back');
     }
-    req.flash('success', "Post Deleted");
+    
     await post.deleteOne();
     await Comment.deleteMany({ post: req.params.id });
+    
+    if (req.xhr){
+          return res.status(200).json({
+            data: {
+              post_id: req.params.id
+            },
+            message: "Post Deleted!!"
+          });
+        }
 
+    req.flash('success', "Post Deleted");
     return res.redirect('back');
   } catch (err) {
     console.error('Error in deleting post:', err);
