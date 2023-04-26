@@ -34,6 +34,10 @@ app.use(cookieParser());
 
 //use of static Files
 app.use(express.static('./assets'));
+
+//make the upload path available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 app.use(expressLayouts)
 
 //Extract of CSS links and Scripts Tag and put them at the head and bottom of the file

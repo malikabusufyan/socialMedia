@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 <div class="nav">
-    <h1>Profile Section | Codeial
+    <h1>
+        <%= profile_user.name %>
     </h1>
+
+    <img src="<%= user.avatar %>" alt="<%= user.name %>" width="50px" height="50px">
 
     <% if (user.id==profile_user.id) {%>
         <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="post">
