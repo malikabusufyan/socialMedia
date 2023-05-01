@@ -13,7 +13,14 @@ const commentSchema = new mongoose.Schema({
     post: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post'
-    }
+    },
+    //include the array of ids of all Likes in this post schema
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref:'Like'
+        }
+    ]
 }, {
     timestamps: true
 });

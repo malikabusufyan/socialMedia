@@ -3,14 +3,14 @@ const ejs = require('ejs');
 const path = require('path');
 
 let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth:{
-        user: 'mscodeialweb@gmail.com',
-        pass: 'kedwofsmvnhvwgnu'
-    }
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "mscodeialweb@gmail.com",
+    pass: "vuqxsifvjzrkjcal",
+  },
 });
 
 let renderTemplate = (data, relativePath) => {
