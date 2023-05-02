@@ -1,10 +1,8 @@
-// const { Queue } = require('kue');
-// const queue = require('../config/kue');
+const queue = require('../config/kue');
+const commentMailer = require('../mailers/comments_mailer');
 
-// const commentsMailer = require('../mailers/comments_mailer');
-
-// Queue.process('emails', function(job, done){
-//     console.log('email works are processing a job', job.data);
-//     commentsMailer.newComment(job.data);
-//     done();
-// })
+queue.process('emails', function (job, done) {
+    console.log('Emails worker is processing a job', job.data);
+    commentMailer.newComment(job.data);
+    done();
+});
